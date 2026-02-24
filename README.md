@@ -1,85 +1,174 @@
-# Praxis SaaS
+Praxis SaaS
 
-Praxis is a comprehensive SaaS platform built to help candidates navigate modern interviewing, coding practice, and technical preparation.
+AI-Powered Placement Preparation Platform
 
-##  Tech Stack
+Praxis SaaS is a full-stack, production-ready interview and coding preparation platform built with modern web technologies. It helps candidates simulate technical interviews, evaluate coding solutions, and resolve doubts using AI-powered feedback.
 
-### Frontend
-* **Framework:** [Next.js](https://nextjs.org/) (React)
-* **Styling:** [Tailwind CSS](https://tailwindcss.com/)
-* **Language:** TypeScript
+The platform is designed with a scalable architecture separating frontend, backend, database, and AI service layers.
 
-### Backend
-* **Framework:** [FastAPI](https://fastapi.tiangolo.com/) (Python)
-* **Database Management:** [SQLAlchemy](https://www.sqlalchemy.org/)
-* **Backend-as-a-Service / DB:** [Supabase](https://supabase.com/) (PostgreSQL)
-* **AI Integration:** Google Gemini (`google-genai`)
+⸻
 
----
+Core Features
 
-##  Getting Started
+Interview Practice
+	•	Role & difficulty-based mock interviews
+	•	AI-evaluated responses using Google Gemini
+	•	Structured feedback (score, strengths, weaknesses, improved answer)
+	•	Session persistence and history tracking
 
-### Prerequisites
-* **Node.js:** v18 or later
-* **Python:** 3.10 or later
-* **PostgreSQL Database:** Supabase account/project
-* **Google Gemini API Key**
+Coding Practice
+	•	DSA-style question bank
+	•	AI code evaluation & optimization suggestions
+	•	Performance scoring system
+	•	Submission tracking per user
 
-### 1. Frontend Setup
-Navigate to the `frontend` directory:
-```bash
-cd frontend
+Doubt Solver
+	•	AI-powered conceptual explanations
+	•	PDF/image/code upload support
+	•	OCR-based text extraction (Tesseract)
+	•	Conversation history storage
+
+Dashboard & Analytics
+	•	Readiness score calculation
+	•	Interview & coding performance metrics
+	•	Engagement tracking
+	•	Fully backend-calculated analytics (no unnecessary AI calls)
+
+Authentication
+	•	Secure login & signup using Supabase Auth
+	•	JWT-based route protection
+	•	Middleware-protected frontend routes
+
+⸻
+
+Tech Stack
+
+Frontend
+	•	Next.js 14 (App Router)
+	•	TypeScript
+	•	Tailwind CSS
+	•	Supabase Auth Client
+
+Backend
+	•	FastAPI (Python)
+	•	SQLAlchemy ORM
+	•	Pydantic
+	•	Supabase PostgreSQL
+	•	Google Gemini API
+
+Dev Tools
+	•	Uvicorn
+	•	ESLint
+	•	PostCSS
+	•	Tesseract OCR
+	•	PyPDF
+
+⸻
+
+## 📂 Project Architecture
+
+```
+praxis-saas/
+│
+├── backend/                 # FastAPI + SQLAlchemy + Supabase
+│   ├── app/
+│   │   ├── main.py          # FastAPI entry point
+│   │   ├── api/             # Route definitions
+│   │   ├── core/            # App configuration
+│   │   ├── db/              # Database models & session
+│   │   ├── schemas/         # Pydantic request/response models
+│   │   └── services/        # Business logic (AI, analytics, file parsing)
+│   │
+│   ├── schema.sql           # Supabase DB schema
+│   └── requirements.txt
+│
+├── frontend/                # Next.js 14 (App Router) + Tailwind
+│   ├── src/
+│   │   ├── app/             # Pages (Dashboard, Interview, Coding, Doubts)
+│   │   ├── components/      # Shared UI components
+│   │   └── lib/             # API + Supabase utilities
+│   │
+│   └── public/              # Static assets
+│
+└── README.md
 ```
 
-Install the dependencies:
-```bash
-npm install
-```
+⸻
 
-Set up your environment variables by creating a `.env.local` file (use `.env.example` if available as a reference):
-```env
-NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your_supabase_anon_key
-```
+Getting Started
 
-Run the development server:
-```bash
-npm run dev
-```
-The frontend should now be running on [http://localhost:3000](http://localhost:3000).
+Prerequisites
+	•	Node.js v18+
+	•	Python 3.10+
+	•	Supabase Project
+	•	Google Gemini API Key
 
-### 2. Backend Setup
-Navigate to the `backend` directory:
-```bash
+⸻
+
+Backend Setup
+
 cd backend
-```
-
-Create and activate a virtual environment:
-```bash
-# On macOS/Linux
 python -m venv venv
-source venv/bin/activate
-
-# On Windows
-python -m venv venv
-.\venv\Scripts\activate
-```
-
-Install the required Python packages:
-```bash
+source venv/bin/activate   # Windows: venv\Scripts\activate
 pip install -r requirements.txt
-```
 
-Set up the backend environment variables by creating a `.env` file:
-```env
-# Example environment variables
+Create .env:
+
 SUPABASE_URL=your_supabase_url
-SUPABASE_KEY=your_supabase_service_role_key
+SUPABASE_SERVICE_ROLE_KEY=your_service_role_key
+POSTGRES_URL=your_supabase_connection_string
 GEMINI_API_KEY=your_gemini_key
-```
 
-Start the FastAPI server:
-```bash
+Run backend:
+
 uvicorn app.main:app --reload
-```
-The backend API should now be running on [http://localhost:8000](http://localhost:8000). You can visit `http://localhost:8000/docs` to view the automatic Swagger UI documentation.
+
+Backend runs on:
+
+http://localhost:8000
+
+Swagger Docs:
+
+http://localhost:8000/docs
+
+
+⸻
+
+Frontend Setup
+
+cd frontend
+npm install
+
+Create .env.local:
+
+NEXT_PUBLIC_SUPABASE_URL=your_supabase_url
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key
+NEXT_PUBLIC_API_BASE_URL=http://localhost:8000
+
+Run frontend:
+
+npm run dev
+
+Frontend runs on:
+
+http://localhost:3000
+
+
+⸻
+
+Architecture Highlights
+	•	Modular backend structure (API → Services → DB → Core)
+	•	Clean separation of concerns
+	•	Stateless FastAPI routes
+	•	JWT-based authentication middleware
+	•	AI usage optimized to reduce unnecessary API consumption
+	•	Scalable SaaS-ready architecture
+
+⸻
+
+Future Improvements
+	•	AI-powered adaptive difficulty
+	•	Resume analysis & personalized question recommendations
+	•	Leaderboards & peer comparison
+	•	Interview performance trend prediction
+	•	Stripe subscription integration
