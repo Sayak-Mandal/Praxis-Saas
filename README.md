@@ -2,7 +2,7 @@
 
 Praxis is a comprehensive SaaS platform built to help candidates navigate modern interviewing, coding practice, and technical preparation.
 
-## 🚀 Tech Stack
+##  Tech Stack
 
 ### Frontend
 * **Framework:** [Next.js](https://nextjs.org/) (React)
@@ -17,7 +17,7 @@ Praxis is a comprehensive SaaS platform built to help candidates navigate modern
 
 ---
 
-## 🛠️ Getting Started
+##  Getting Started
 
 ### Prerequisites
 * **Node.js:** v18 or later
