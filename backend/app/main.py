@@ -8,18 +8,20 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Proper CORS configuration
+# CORS configuration
+origins = [
+    "http://localhost:3000", # Next.js dev server
+    # Add production frontend URL later
+]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:3000",
-        "https://praxis-saas-app.vercel.app"
-    ],
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
 # Include routers
 app.include_router(health.router, prefix="/api/v1")
 app.include_router(doubts.router, prefix="/api/v1")
