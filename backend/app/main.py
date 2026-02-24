@@ -13,7 +13,7 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "https://praxis-saas-noe9bhs5d-sayak-mandals-projects.vercel.app",
+        "https://praxis-saas-app.vercel.app",  # your stable production domain
     ],
     allow_credentials=True,
     allow_methods=["*"],
