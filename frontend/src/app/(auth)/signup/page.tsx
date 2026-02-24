@@ -102,9 +102,9 @@ export default async function SignUpPage({
                             <div className="flex items-center gap-2 bg-[#e6cab3] px-6 py-2.5 rounded-2xl shadow-sm border border-white">
                                 <span className="text-lg font-black text-[#181b25] uppercase tracking-[0.3em]">Praxis</span>
                             </div>
-                            <span className="absolute -top-1 -right-1 flex h-4 w-4">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-90"></span>
-                                <span className="relative inline-flex rounded-full h-4 w-4 bg-green-400 border-[2.5px] border-white" style={{ boxShadow: '0 0 8px 3px rgba(34,197,94,0.85)' }}></span>
+                            <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
                             </span>
                         </div>
                         <p className="text-xs font-bold text-slate-500 uppercase tracking-[0.15em] text-center mt-1">Your One Stop Placement Assistant</p>
