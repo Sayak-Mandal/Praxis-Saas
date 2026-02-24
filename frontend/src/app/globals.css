@@ -1,0 +1,66 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+:root {
+  --background: #f3f4f6;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+body,
+html {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Clamp Next.js root so content can never overflow past viewport */
+#__next {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Typography styles for readable code blocks */
+.prose pre {
+  background-color: transparent !important;
+  color: inherit !important;
+  border: none !important;
+  padding: 0 !important;
+  margin: 1em 0 !important;
+  white-space: pre-wrap !important;
+  word-wrap: break-word !important;
+}
+
+.prose code {
+  color: #ef4444 !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  font-weight: 600 !important;
+}
+
+.prose pre code {
+  color: inherit !important;
+  background-color: transparent !important;
+  padding: 0 !important;
+  font-weight: 500 !important;
+}
+
+/* Force all syntax-highlighted spans to inherit the dark text color in light mode */
+.prose pre code span {
+  color: inherit !important;
+}
