@@ -1,4 +1,4 @@
-# 📁 Praxis — Project Structure
+# Praxis — Project Structure
 
 A full walkthrough of the repository layout to help contributors and self-hosters understand where everything lives.
 
@@ -94,7 +94,7 @@ praxis-saas/
 
 ---
 
-## 🔑 Environment Variables
+## Environment Variables
 
 ### `backend/.env`
 
@@ -115,7 +115,7 @@ praxis-saas/
 
 ---
 
-## 🗄️ Database Setup
+## Database Setup
 
 1. Open your Supabase project → **SQL Editor**
 2. Paste and run the contents of `backend/schema.sql` — this creates all required tables
@@ -123,7 +123,7 @@ praxis-saas/
 
 ---
 
-## 🚦 Request Flow
+## Request Flow
 
 ```
 Browser → Next.js Frontend (port 3000)
