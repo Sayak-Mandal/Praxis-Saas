@@ -10,18 +10,16 @@ app = FastAPI(
 
 # Proper CORS configuration
 
-app.add_middleware(
+aapp.add_middleware(
     CORSMiddleware,
     allow_origins=[
         "http://localhost:3000",
-        "https://praxis-saas-app.vercel.app",
-        "https://praxis-saas-noe9bhs5d-sayak-mandals-projects.vercel.app",
+        "https://praxis-saas-app.vercel.app"
     ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 # Include routers
 app.include_router(health.router, prefix="/api/v1")
 app.include_router(doubts.router, prefix="/api/v1")
