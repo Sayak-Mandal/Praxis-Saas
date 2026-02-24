@@ -64,8 +64,19 @@ Dev Tools
 	•	PyPDF
 
 ⸻
+##  Architecture Overview
 
-## 📂 Project Architecture
+Praxis SaaS follows a clean layered architecture:
+
+- **Frontend (Next.js)** → UI + Auth + Protected Routes
+- **Backend (FastAPI)** → Business logic + API endpoints
+- **Services Layer** → AI evaluation, analytics, file parsing
+- **Database (Supabase PostgreSQL)** → Persistent storage
+- **Authentication** → Supabase JWT verification
+
+This separation ensures scalability, maintainability, and production readiness.
+
+##  Project Architecture
 
 ```
 praxis-saas/
