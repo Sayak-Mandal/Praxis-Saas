@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.api.routes import health, doubts, interview, coding, users
+from app.api.routes import health, doubts, interview, coding, users, live_interview
 
 app = FastAPI(
     title="Praxis API",
@@ -28,6 +28,7 @@ app.include_router(doubts.router, prefix="/api/v1")
 app.include_router(interview.router, prefix="/api/v1")
 app.include_router(coding.router, prefix="/api/v1")
 app.include_router(users.router, prefix="/api/v1")
+app.include_router(live_interview.router, prefix="/api/v1")
 
 @app.get("/")
 def read_root():

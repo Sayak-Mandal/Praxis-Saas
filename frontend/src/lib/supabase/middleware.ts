@@ -27,7 +27,13 @@ export async function updateSession(request: NextRequest) {
         }
     )
 
-    const { data: { user } } = await supabase.auth.getUser()
+    let user = null;
+    try {
+        const authResp = await supabase.auth.getUser()
+        user = authResp.data.user;
+    } catch (err) {
+        console.error("Middleware Supabase fetch error:", err)
+    }
 
     // Protect app routes (everything except login, signup, root, and static assets)
     const isAuthRoute = request.nextUrl.pathname.startsWith('/login') || request.nextUrl.pathname.startsWith('/signup')

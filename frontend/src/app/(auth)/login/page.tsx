@@ -23,16 +23,23 @@ export default async function LoginPage({
         const password = formData.get('password') as string
         const supabase = await createClient()
 
-        const { error } = await supabase.auth.signInWithPassword({
-            email,
-            password,
-        })
+        let redirectUrl = '/dashboard'
 
-        if (error) {
-            return redirect('/login?message=Could not authenticate user')
+        try {
+            const { error } = await supabase.auth.signInWithPassword({
+                email,
+                password,
+            })
+
+            if (error) {
+                redirectUrl = '/login?message=Could not authenticate user'
+            }
+        } catch (err) {
+            console.error('Login action error:', err)
+            redirectUrl = '/login?message=Authentication service unreachable. Check your Supabase URL.'
         }
 
-        return redirect('/dashboard')
+        return redirect(redirectUrl)
     }
 
     return (

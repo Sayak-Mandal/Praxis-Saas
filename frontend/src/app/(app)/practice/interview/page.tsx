@@ -17,8 +17,8 @@ import {
     Sparkles,
     User as UserIcon,
     Bot,
-    PanelLeftClose,
-    Menu
+    ChevronsLeft,
+    AlignLeft
 } from 'lucide-react'
 import { startInterviewSession, evaluateInterviewResponse } from '@/lib/api'
 import { cn } from '@/lib/utils'
@@ -258,8 +258,8 @@ export default function InterviewPracticePage() {
                                 <p className="text-[10px] text-slate-500 font-medium uppercase tracking-wider">Configure Session</p>
                             </div>
                         </div>
-                        <button onClick={() => setIsSidebarOpen(false)} className="p-2.5 text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 bg-slate-50 dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 rounded-xl transition-colors" title="Collapse Sidebar">
-                            <PanelLeftClose className="w-5 h-5" />
+                        <button onClick={() => setIsSidebarOpen(false)} className="p-2 text-slate-400 hover:text-white dark:hover:text-white bg-slate-50 dark:bg-slate-800 hover:bg-[#181b25] dark:hover:bg-[#181b25] border border-slate-200 dark:border-slate-700 hover:border-[#181b25] rounded-lg transition-all duration-200 shadow-sm" title="Collapse Sidebar">
+                            <ChevronsLeft className="w-4 h-4" />
                         </button>
                     </div>
 
@@ -330,13 +330,13 @@ export default function InterviewPracticePage() {
             <div className="flex-1 flex flex-col h-full relative transition-all duration-300 min-w-0 bg-[#f3f4f6] dark:bg-slate-950">
 
                 {!isSidebarOpen && (
-                    <div className="absolute top-6 left-6 z-10 animate-in fade-in zoom-in duration-300">
+                    <div className="absolute top-6 left-6 z-50 animate-in fade-in zoom-in duration-300">
                         <button
                             onClick={() => setIsSidebarOpen(true)}
-                            className="p-3 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md rounded-xl text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200 transition-all"
+                            className="p-2.5 bg-slate-50 dark:bg-slate-800 hover:bg-[#181b25] dark:hover:bg-[#181b25] text-slate-400 dark:text-slate-400 hover:text-white dark:hover:text-white border border-slate-200 dark:border-slate-700 hover:border-[#181b25] rounded-lg shadow-sm transition-all duration-200"
                             title="Expand Sidebar"
                         >
-                            <Menu className="w-5 h-5" />
+                            <AlignLeft className="w-5 h-5" />
                         </button>
                     </div>
                 )}

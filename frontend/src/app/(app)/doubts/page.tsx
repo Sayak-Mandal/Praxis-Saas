@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect, useRef } from 'react'
-import { Send, Paperclip, X, File as FileIcon, Image as ImageIcon, Code, MessageSquare, Plus, Clock, Loader2, Copy, Check, PanelLeftClose, Menu } from 'lucide-react'
+import { Send, Paperclip, X, File as FileIcon, Image as ImageIcon, Code, MessageSquare, Plus, Clock, Loader2, Copy, Check, ChevronsLeft, AlignLeft } from 'lucide-react'
 import { getDoubtHistory, solveDoubtWithFile } from '@/lib/api'
 import { cn } from '@/lib/utils'
 import { useScrollOnSelect } from '@/lib/useScrollOnSelect'
@@ -175,8 +175,8 @@ export default function DoubtsPage() {
                         <Plus className="w-5 h-5" />
                         New Doubt
                     </button>
-                    <button onClick={() => setIsSidebarOpen(false)} className="p-3 text-slate-400 hover:text-slate-700 bg-slate-50 hover:bg-slate-100 rounded-xl transition-colors" title="Collapse Sidebar">
-                        <PanelLeftClose className="w-5 h-5" />
+                    <button onClick={() => setIsSidebarOpen(false)} className="p-2 text-slate-400 hover:text-white bg-slate-50 hover:bg-[#181b25] border border-slate-200 hover:border-[#181b25] rounded-lg transition-all duration-200 shadow-sm" title="Collapse Sidebar">
+                        <ChevronsLeft className="w-4 h-4" />
                     </button>
                 </div>
 
@@ -227,13 +227,13 @@ export default function DoubtsPage() {
             <div className="flex-1 flex flex-col h-full relative transition-all duration-300 min-w-0">
 
                 {!isSidebarOpen && (
-                    <div className="absolute top-6 left-6 z-10 animate-in fade-in zoom-in duration-300">
+                    <div className="absolute top-6 left-6 z-50 animate-in fade-in zoom-in duration-300">
                         <button
                             onClick={() => setIsSidebarOpen(true)}
-                            className="p-3 bg-white border border-slate-200 shadow-sm hover:shadow-md rounded-xl text-slate-500 hover:text-slate-800 transition-all"
+                            className="p-2.5 bg-slate-50 hover:bg-[#181b25] text-slate-400 hover:text-white border border-slate-200 hover:border-[#181b25] rounded-lg shadow-sm transition-all duration-200"
                             title="Expand Sidebar"
                         >
-                            <Menu className="w-5 h-5" />
+                            <AlignLeft className="w-5 h-5" />
                         </button>
                     </div>
                 )}

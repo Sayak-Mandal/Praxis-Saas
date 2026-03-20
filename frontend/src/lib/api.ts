@@ -138,9 +138,49 @@ export async function trackVisit() {
             const errText = await response.text()
             console.error("[trackVisit] Backend error:", response.status, errText)
         } else {
-            console.log("[trackVisit] Visit recorded successfully")
         }
     } catch (e) {
         console.error("[trackVisit] Network error:", e)
     }
 }
+
+export async function startLiveInterview(role: string, difficulty: string) {
+    const headers = await getAuthHeaders()
+
+    const response = await fetch(`${API_BASE_URL}/interview/live/start`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({ role, difficulty })
+    })
+
+    if (!response.ok) throw new Error("Failed to start live interview")
+    return response.json()
+}
+
+export async function endLiveInterview(sessionId: string, fillerWordCount: number, transcript: any[]) {
+    let headers: Record<string, string>
+    try {
+        headers = await getAuthHeaders()
+    } catch (authErr) {
+        console.error("endLiveInterview: auth session unavailable", authErr)
+        throw new Error("Session expired. Please refresh and try again.")
+    }
+
+    const response = await fetch(`${API_BASE_URL}/interview/live/end`, {
+        method: 'POST',
+        headers,
+        body: JSON.stringify({
+            session_id: sessionId,
+            filler_word_count: fillerWordCount,
+            transcript: transcript
+        })
+    })
+
+    if (!response.ok) {
+        const errText = await response.text().catch(() => "")
+        console.error("endLiveInterview error:", response.status, errText)
+        throw new Error(`Failed to end live interview (${response.status})`)
+    }
+    return response.json()
+}
+

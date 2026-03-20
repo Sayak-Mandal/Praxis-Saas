@@ -27,3 +27,12 @@ class CodingEvaluationRequest(BaseModel):
     language: str
     submitted_code: str
     execution_time_ms: int
+
+class LiveInterviewStartRequest(BaseModel):
+    role: str
+    difficulty: str
+
+class LiveInterviewEndRequest(BaseModel):
+    session_id: str
+    filler_word_count: int
+    transcript: list[dict[str, str]]

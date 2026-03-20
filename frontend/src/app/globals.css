@@ -64,3 +64,9 @@ html {
 .prose pre code span {
   color: inherit !important;
 }
+
+/* AI Avatar — gentle talking mouth animation */
+@keyframes avatar-talk {
+  0%   { transform: scaleY(0.35); opacity: 0.75; }
+  100% { transform: scaleY(1);    opacity: 1;    }
+}

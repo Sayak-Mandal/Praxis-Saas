@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from 'react'
 import { LineChart, Line, XAxis, YAxis, ResponsiveContainer } from 'recharts'
 import { CheckCircle2, ArrowUpRight, ArrowDownRight, Eye, ArrowRight, Star, RefreshCw } from 'lucide-react'
+import Link from 'next/link'
 import { getAnalytics, trackVisit } from '@/lib/api'
 
 // MOCK_DATA removed, using real DB data
@@ -131,6 +132,8 @@ export default function DashboardPage() {
                         Here&apos;s your latest placement readiness report.
                     </p>
                 </div>
+
+
 
                 {/* Top Row: Performance (1/3) & Activity (2/3) */}
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-6">

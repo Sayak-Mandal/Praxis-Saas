@@ -1,4 +1,5 @@
 fastapi==0.129.2
+gTTS==2.5.4
 google-genai==1.64.0
 Pillow==12.1.1
 protobuf==5.29.6
