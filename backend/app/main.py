@@ -1,11 +1,21 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import health, doubts, interview, coding, users, live_interview
+from app.db.session import engine, Base
+from app.db import models  # noqa: F401 — ensures all models are registered
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Auto-create all tables on startup (safe: uses CREATE TABLE IF NOT EXISTS)
+    Base.metadata.create_all(bind=engine)
+    yield
 
 app = FastAPI(
     title="Praxis API",
     description="SaaS Backend for Praxis AI Assitant",
-    version="1.0.0"
+    version="1.0.0",
+    lifespan=lifespan
 )
 
 # CORS configuration

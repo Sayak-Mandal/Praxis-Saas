@@ -11,55 +11,81 @@ from app.db.models import QuestionBank
 from sqlalchemy import text
 
 questions_data = [
-    # Software Engineer - Easy
-    {"role": "Software Engineer", "difficulty": "Easy", "question_text": "What is the difference between an Array and a Linked List?", "hint": "Think about how they allocate memory and the time complexity for accessing vs inserting elements."},
-    {"role": "Software Engineer", "difficulty": "Easy", "question_text": "Explain the concept of OOP (Object-Oriented Programming).", "hint": "Focus on the four main pillars: Encapsulation, Abstraction, Inheritance, and Polymorphism."},
-    {"role": "Software Engineer", "difficulty": "Easy", "question_text": "What is a REST API?", "hint": "Mention HTTP methods (GET, POST, PUT, DELETE) and statelessness."},
-    {"role": "Software Engineer", "difficulty": "Easy", "question_text": "Describe the MVC architecture pattern.", "hint": "Break down what Model, View, and Controller each handle in an application."},
-    {"role": "Software Engineer", "difficulty": "Easy", "question_text": "What is version control, and why is Git useful?", "hint": "Think about collaboration, tracking history, and reverting changes."},
-    {"role": "Software Engineer", "difficulty": "Easy", "question_text": "Explain the difference between synchronous and asynchronous programming.", "hint": "Use the analogy of waiting in line versus taking a buzzer at a restaurant."},
-    {"role": "Software Engineer", "difficulty": "Easy", "question_text": "What is a database index?", "hint": "Compare it to the index at the back of a book to speed up data retrieval."},
-    {"role": "Software Engineer", "difficulty": "Easy", "question_text": "How does a hash table work under the hood?", "hint": "Mention hash functions, buckets, and handling collisions."},
-    {"role": "Software Engineer", "difficulty": "Easy", "question_text": "What is the purpose of unit testing?", "hint": "Focus on catching bugs early by testing small, isolated pieces of code."},
-    {"role": "Software Engineer", "difficulty": "Easy", "question_text": "What is the difference between passed by value and passed by reference?", "hint": "Think about whether the actual variable is modified or just a copy of its data."},
+    # Java Developer - Easy
+    {"role": "Java Developer", "difficulty": "Easy", "question_text": "What is the difference between JDK, JRE, and JVM?", "hint": "JVM runs bytecode, JRE includes JVM + libraries, JDK includes JRE + compiler tools."},
+    {"role": "Java Developer", "difficulty": "Easy", "question_text": "Explain the four pillars of Object-Oriented Programming in Java.", "hint": "Encapsulation, Abstraction, Inheritance, and Polymorphism — give a real-world example for each."},
+    {"role": "Java Developer", "difficulty": "Easy", "question_text": "What is the difference between '==' and '.equals()' in Java?", "hint": "== compares references, .equals() compares content — think about String comparisons."},
+    {"role": "Java Developer", "difficulty": "Easy", "question_text": "What are the access modifiers in Java?", "hint": "public, private, protected, and package-private (default). Know their visibility scope."},
+    {"role": "Java Developer", "difficulty": "Easy", "question_text": "What is the difference between ArrayList and LinkedList in Java?", "hint": "Array-backed vs node-based. Think about random access vs frequent insertions."},
 
-    # Software Engineer - Medium
-    {"role": "Software Engineer", "difficulty": "Medium", "question_text": "How do you handle race conditions in a multithreaded application?", "hint": "Discuss synchronization primitives like mutexes, semaphores, or locks."},
-    {"role": "Software Engineer", "difficulty": "Medium", "question_text": "Explain how Garbage Collection works in languages like Java or Python.", "hint": "Mention reference counting or mark-and-sweep algorithms."},
-    {"role": "Software Engineer", "difficulty": "Medium", "question_text": "What are the differences between SQL and NoSQL databases?", "hint": "Compare structured, relational schemas (ACID) with flexible, document-based schemas (BASE)."},
-    {"role": "Software Engineer", "difficulty": "Medium", "question_text": "Describe the CAP Theorem.", "hint": "You can only pick two: Consistency, Availability, Partition Tolerance."},
-    {"role": "Software Engineer", "difficulty": "Medium", "question_text": "How would you design a URL shortener like bit.ly?", "hint": "Talk about ID generation, base62 encoding, and redirect handling."},
-    {"role": "Software Engineer", "difficulty": "Medium", "question_text": "Explain the difference between TCP and UDP.", "hint": "TCP is reliable and ordered (handshake), UDP is fast but fire-and-forget."},
-    {"role": "Software Engineer", "difficulty": "Medium", "question_text": "What is Cross-Site Scripting (XSS) and how do you prevent it?", "hint": "Focus on untrusted user input being executed in the browser; mention sanitization and escaping."},
-    {"role": "Software Engineer", "difficulty": "Medium", "question_text": "How do microservices differ from a monolithic architecture?", "hint": "Discuss independent deployment, specialized databases, vs a single unified codebase."},
-    {"role": "Software Engineer", "difficulty": "Medium", "question_text": "What is a message queue and when would you use one?", "hint": "Mention decoupling services, async processing, and examples like Kafka or RabbitMQ."},
-    {"role": "Software Engineer", "difficulty": "Medium", "question_text": "Explain how a Content Delivery Network (CDN) works.", "hint": "Talk about edge servers caching static assets physically closer to the user."},
+    # Java Developer - Medium
+    {"role": "Java Developer", "difficulty": "Medium", "question_text": "How does the Java Garbage Collector work?", "hint": "Mention generational GC (Young, Old, Perm/Metaspace) and algorithms like G1 or CMS."},
+    {"role": "Java Developer", "difficulty": "Medium", "question_text": "What is the difference between checked and unchecked exceptions in Java?", "hint": "Checked exceptions must be declared or caught at compile time; unchecked are runtime exceptions."},
+    {"role": "Java Developer", "difficulty": "Medium", "question_text": "Explain the concept of multithreading in Java and how you synchronize threads.", "hint": "Mention the synchronized keyword, wait/notify, or java.util.concurrent tools like ReentrantLock."},
+    {"role": "Java Developer", "difficulty": "Medium", "question_text": "What is the Java Stream API and what advantages does it offer?", "hint": "Functional-style operations on collections: filter, map, reduce. Also mention lazy evaluation."},
+    {"role": "Java Developer", "difficulty": "Medium", "question_text": "What design patterns have you used in Java, and when?", "hint": "Mention Singleton, Factory, Builder, or Observer with a concrete use case for each."},
 
-    # Software Engineer - Hard
-    {"role": "Software Engineer", "difficulty": "Hard", "question_text": "How do you design a system that needs to handle 1 million concurrent web sockets?", "hint": "Discuss server tuning (epoll/kqueue), load balancer configurations, and memory limits per connection."},
-    {"role": "Software Engineer", "difficulty": "Hard", "question_text": "Explain the Paxos or Raft consensus algorithm.", "hint": "Focus on leader election, log replication, and handling split-brain scenarios."},
-    {"role": "Software Engineer", "difficulty": "Hard", "question_text": "How would you implement a distributed rate limiter?", "hint": "Talk about Token Bucket or Leaky Bucket algorithms using Redis with Lua scripts for atomicity."},
-    {"role": "Software Engineer", "difficulty": "Hard", "question_text": "Describe how B-trees and B+trees are used in database indexing.", "hint": "Focus on minimizing disk I/O, node splitting, and why B+ trees store all data in leaf nodes."},
-    {"role": "Software Engineer", "difficulty": "Hard", "question_text": "What are memory leaks in garbage-collected languages, and how do you debug them?", "hint": "Discuss holding unintentional references to objects, making them unreachable by the GC, and using heap profilers."},
-    {"role": "Software Engineer", "difficulty": "Hard", "question_text": "How do you achieve transactional guarantees across microservices?", "hint": "Mention the Saga pattern, Two-Phase Commit (2PC), and eventual consistency."},
-    {"role": "Software Engineer", "difficulty": "Hard", "question_text": "Design a real-time collaborative document editor like Google Docs.", "hint": "The core algorithm to discuss is Operational Transformation (OT) or CRDTs to handle concurrent edits."},
-    {"role": "Software Engineer", "difficulty": "Hard", "question_text": "Explain how HTTPS sets up a secure connection (SSL/TLS Handshake).", "hint": "Walk through the asymmetric exchange of certificates to establish a symmetric session key."},
-    {"role": "Software Engineer", "difficulty": "Hard", "question_text": "How does consistent hashing work, and what problem does it solve?", "hint": "Explain the hash ring approach to minimize data movement when a server node is added or removed."},
-    {"role": "Software Engineer", "difficulty": "Hard", "question_text": "What is the difference between concurrency and parallelism?", "hint": "Concurrency is managing multiple tasks at once (interleaving), parallelism is executing them simultaneously (multi-core)."},
+    # Java Developer - Hard
+    {"role": "Java Developer", "difficulty": "Hard", "question_text": "Explain the Java Memory Model and how it relates to the volatile keyword.", "hint": "Discuss the happens-before relation, CPU cache visibility, and why volatile doesn't make compound actions atomic."},
+    {"role": "Java Developer", "difficulty": "Hard", "question_text": "What is the difference between ReentrantLock and synchronized in Java?", "hint": "ReentrantLock allows try-lock, timed lock, interruptible lock, and fairness policy — synchronized does not."},
+    {"role": "Java Developer", "difficulty": "Hard", "question_text": "How would you design a thread-safe LRU cache in Java without using Hashtable?", "hint": "LinkedHashMap with access-order + Collections.synchronizedMap, or ConcurrentHashMap + ConcurrentLinkedDeque."},
 
-    # Product Manager - Easy/Medium (just adding a few so the API doesn't fail if PM is selected)
-    {"role": "Product Manager", "difficulty": "Easy", "question_text": "What is the life cycle of a product?", "hint": "Introduction, Growth, Maturity, Decline."},
-    {"role": "Product Manager", "difficulty": "Easy", "question_text": "How do you prioritize features for a roadmap?", "hint": "Mention frameworks like RICE (Reach, Impact, Confidence, Effort) or MoSCoW."},
-    {"role": "Product Manager", "difficulty": "Easy", "question_text": "What is an MVP (Minimum Viable Product)?", "hint": "The simplest version of a product that provides enough value to gather validated learning."},
-    {"role": "Product Manager", "difficulty": "Medium", "question_text": "How do you handle a scenario where engineering says a feature will take twice as long as expected?", "hint": "Discuss scope negotiation, phasing the release, and assessing the core user value needed now."},
-    {"role": "Product Manager", "difficulty": "Medium", "question_text": "Design a new feature for Spotify.", "hint": "Start with identifying a specific user pain point before jumping to the solution. (e.g. social listening)."},
+    # Frontend Developer - Easy
+    {"role": "Frontend Developer", "difficulty": "Easy", "question_text": "What is the difference between 'let', 'const', and 'var' in JavaScript?", "hint": "Focus on scope (block vs function), hoisting, and mutability."},
+    {"role": "Frontend Developer", "difficulty": "Easy", "question_text": "Explain the CSS Box Model.", "hint": "Content, Padding, Border, Margin — and how box-sizing: border-box changes width calculation."},
+    {"role": "Frontend Developer", "difficulty": "Easy", "question_text": "What is the difference between flexbox and CSS Grid?", "hint": "Flex is one-dimensional (row or col), Grid is two-dimensional. Both are display properties."},
+    {"role": "Frontend Developer", "difficulty": "Easy", "question_text": "What does 'semantic HTML' mean and why does it matter?", "hint": "Using tags like <article>, <nav>, <main> for meaning not just layout — improves SEO and accessibility."},
+    {"role": "Frontend Developer", "difficulty": "Easy", "question_text": "What is event delegation in JavaScript?", "hint": "Attaching a single listener to a parent element to handle events from child elements via bubbling."},
 
-    # Data Scientist - Easy/Medium
-    {"role": "Data Scientist", "difficulty": "Easy", "question_text": "What is the difference between supervised and unsupervised learning?", "hint": "Supervised uses labeled data (known outcomes), unsupervised finds patterns in unlabeled data."},
-    {"role": "Data Scientist", "difficulty": "Easy", "question_text": "Explain the bias-variance tradeoff.", "hint": "Bias leads to underfitting (too simple), variance leads to overfitting (too sensitive to training noise)."},
-    {"role": "Data Scientist", "difficulty": "Easy", "question_text": "What is p-value in statistics?", "hint": "The probability of obtaining test results at least as extreme as the observed results, assuming the null hypothesis is true."},
-    {"role": "Data Scientist", "difficulty": "Medium", "question_text": "How do you handle imbalanced datasets?", "hint": "Mention SMOTE (oversampling), undersampling, or changing the evaluation metric to F1-score rather than accuracy."},
-    {"role": "Data Scientist", "difficulty": "Medium", "question_text": "Explain how a Random Forest algorithm works.", "hint": "It's an ensemble method that builds multiple decision trees on random subsets and averages their predictions to prevent overfitting."},
+    # Frontend Developer - Medium
+    {"role": "Frontend Developer", "difficulty": "Medium", "question_text": "How does React's Virtual DOM work and why is it fast?", "hint": "React diffs the virtual tree and only patches real DOM changes, avoiding full re-renders."},
+    {"role": "Frontend Developer", "difficulty": "Medium", "question_text": "Explain the useEffect hook in React and common pitfalls.", "hint": "Discuss dependency arrays, cleanup functions, and the stale closure problem."},
+    {"role": "Frontend Developer", "difficulty": "Medium", "question_text": "What is debouncing vs throttling, and when do you use each?", "hint": "Debounce waits until inactivity (search input). Throttle limits calls over time (scroll, resize)."},
+    {"role": "Frontend Developer", "difficulty": "Medium", "question_text": "How do you optimize the performance of a React application?", "hint": "Mention React.memo, useMemo, useCallback, code splitting (React.lazy + Suspense), and virtualization."},
+    {"role": "Frontend Developer", "difficulty": "Medium", "question_text": "What is the difference between server-side rendering (SSR) and client-side rendering (CSR)?", "hint": "SSR sends pre-rendered HTML from the server (better SEO/FCP). CSR renders in the browser (better interactivity)."},
+
+    # Frontend Developer - Hard
+    {"role": "Frontend Developer", "difficulty": "Hard", "question_text": "How would you architect a large-scale React application for a team of 20 engineers?", "hint": "Feature-based folder structure, monorepo, module federation for microfrontends, shared design system."},
+    {"role": "Frontend Developer", "difficulty": "Hard", "question_text": "Explain how the browser renders a webpage from HTML to paint.", "hint": "Parse HTML → DOM, parse CSS → CSSOM, combine into Render Tree → Layout → Paint → Composite."},
+    {"role": "Frontend Developer", "difficulty": "Hard", "question_text": "What are Web Workers and when should you use them?", "hint": "They run scripts in background threads, leaving the main thread unblocked for UI updates. Use for heavy computation."},
+
+    # Backend Developer - Easy
+    {"role": "Backend Developer", "difficulty": "Easy", "question_text": "What is a REST API?", "hint": "Mention HTTP methods (GET, POST, PUT, DELETE), statelessness, and resource-based URLs."},
+    {"role": "Backend Developer", "difficulty": "Easy", "question_text": "What is the difference between SQL and NoSQL databases?", "hint": "Structured relational schemas (ACID) vs flexible document/key-value stores (BASE)."},
+    {"role": "Backend Developer", "difficulty": "Easy", "question_text": "What is middleware in the context of a web server?", "hint": "Functions that intercept the request/response cycle — logging, auth, parsing are common examples."},
+    {"role": "Backend Developer", "difficulty": "Easy", "question_text": "What is a database index and when should you use one?", "hint": "Speeds up SELECT queries at the cost of slower writes and more storage. Use on frequently queried columns."},
+    {"role": "Backend Developer", "difficulty": "Easy", "question_text": "Explain the difference between authentication and authorization.", "hint": "Auth = who you are (identity). Authz = what you're allowed to do (permissions)."},
+
+    # Backend Developer - Medium
+    {"role": "Backend Developer", "difficulty": "Medium", "question_text": "How do you prevent SQL injection in a backend API?", "hint": "Parameterized queries / prepared statements. Never interpolate user input directly into SQL strings."},
+    {"role": "Backend Developer", "difficulty": "Medium", "question_text": "Explain the difference between horizontal and vertical scaling.", "hint": "Vertical = bigger machine. Horizontal = more machines (requires stateless design and a load balancer)."},
+    {"role": "Backend Developer", "difficulty": "Medium", "question_text": "What is caching and what are common caching strategies?", "hint": "Cache-aside, write-through, write-behind. Mention Redis and TTL/eviction policies."},
+    {"role": "Backend Developer", "difficulty": "Medium", "question_text": "What is a message queue and when would you use one?", "hint": "Decouples producers from consumers. Useful for async tasks, retries, and traffic spikes. Examples: Kafka, RabbitMQ."},
+    {"role": "Backend Developer", "difficulty": "Medium", "question_text": "How does JWT (JSON Web Token) authentication work?", "hint": "Header.Payload.Signature — server signs with a secret, client sends it on each request, server verifies the signature."},
+
+    # Backend Developer - Hard
+    {"role": "Backend Developer", "difficulty": "Hard", "question_text": "How would you design a distributed rate limiter for an API?", "hint": "Token Bucket or Leaky Bucket algorithm. Use Redis with Lua scripts for atomic counter operations per user/IP."},
+    {"role": "Backend Developer", "difficulty": "Hard", "question_text": "What is the N+1 query problem, and how do you solve it?", "hint": "Fetching a list then querying each item in a loop. Solve with JOIN-based eager loading or DataLoader batching."},
+    {"role": "Backend Developer", "difficulty": "Hard", "question_text": "Explain the Saga pattern for distributed transactions across microservices.", "hint": "Choreography (event-driven) vs Orchestration (central coordinator). Discuss compensating transactions for rollback."},
+
+    # Data Scientist - Easy
+    {"role": "Data Scientist", "difficulty": "Easy", "question_text": "What is the difference between supervised and unsupervised learning?", "hint": "Supervised uses labeled data, unsupervised finds patterns in unlabeled data (clustering, dimensionality reduction)."},
+    {"role": "Data Scientist", "difficulty": "Easy", "question_text": "Explain the bias-variance tradeoff.", "hint": "Bias → underfitting (too simple). Variance → overfitting (too sensitive to training data). Aim for balance."},
+    {"role": "Data Scientist", "difficulty": "Easy", "question_text": "What is a p-value in statistics?", "hint": "The probability of observing your results (or more extreme) if the null hypothesis were true. p < 0.05 is typically significant."},
+    {"role": "Data Scientist", "difficulty": "Easy", "question_text": "What is the difference between precision and recall?", "hint": "Precision = of predicted positives, how many are correct. Recall = of actual positives, how many did we catch."},
+    {"role": "Data Scientist", "difficulty": "Easy", "question_text": "What is cross-validation and why is it used?", "hint": "Splitting data into k folds to train/test multiple times, giving a more reliable estimate of model performance."},
+
+    # Data Scientist - Medium
+    {"role": "Data Scientist", "difficulty": "Medium", "question_text": "How do you handle imbalanced datasets?", "hint": "SMOTE (oversampling), undersampling, class weights, or changing metric to F1/AUC-ROC instead of accuracy."},
+    {"role": "Data Scientist", "difficulty": "Medium", "question_text": "Explain how a Random Forest algorithm works.", "hint": "Ensemble of decision trees on random feature/data subsets; final prediction by majority vote or averaging."},
+    {"role": "Data Scientist", "difficulty": "Medium", "question_text": "What is regularization and what is the difference between L1 and L2?", "hint": "L1 (Lasso) drives coefficients to zero (feature selection). L2 (Ridge) shrinks them but rarely eliminates."},
+    {"role": "Data Scientist", "difficulty": "Medium", "question_text": "Explain the difference between bagging and boosting.", "hint": "Bagging trains models in parallel on random subsets (reduces variance). Boosting trains sequentially, each fixing the previous model's errors."},
+    {"role": "Data Scientist", "difficulty": "Medium", "question_text": "What is PCA (Principal Component Analysis) and when do you use it?", "hint": "Dimensionality reduction technique that finds orthogonal axes of maximum variance. Use for visualization or reducing features."},
+
+    # Data Scientist - Hard
+    {"role": "Data Scientist", "difficulty": "Hard", "question_text": "How would you detect and handle data leakage in a machine learning pipeline?", "hint": "Leakage occurs when info from outside the training set influences the model. Fit preprocessors only on training data, never test."},
+    {"role": "Data Scientist", "difficulty": "Hard", "question_text": "Explain how gradient boosting works and what hyperparameters matter most.", "hint": "Iteratively fits trees to residuals. Key params: learning rate, n_estimators, max_depth, min_samples_leaf, subsample."},
+    {"role": "Data Scientist", "difficulty": "Hard", "question_text": "What is the difference between a generative and a discriminative model?", "hint": "Generative models the joint P(X,Y) and can generate new data. Discriminative models P(Y|X) directly for classification."},
 ]
 
 def main():
