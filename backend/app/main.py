@@ -9,14 +9,16 @@ app = FastAPI(
 )
 
 # CORS configuration
+# Explicit origins for localhost dev
 origins = [
-    "http://localhost:3000",  # Next.js dev server
-    "https://praxis-saas-38ls5xnfj-sayak-mandals-projects.vercel.app",  # Vercel production
+    "http://localhost:3000",
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
+    # Allows ALL Vercel preview deployments and production domains for this project
+    allow_origin_regex=r"https://.*\.vercel\.app",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
