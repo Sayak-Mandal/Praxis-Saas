@@ -10,6 +10,7 @@ interface PasswordInputProps {
     required?: boolean
     autoComplete?: string
     className?: string
+    disabled?: boolean
 }
 
 export function PasswordInput({
@@ -18,7 +19,8 @@ export function PasswordInput({
     placeholder = '••••••••',
     required = false,
     autoComplete,
-    className = ''
+    className = '',
+    disabled = false
 }: PasswordInputProps) {
     const [showPassword, setShowPassword] = useState(false)
 
@@ -32,10 +34,12 @@ export function PasswordInput({
                 required={required}
                 className={className}
                 placeholder={placeholder}
+                disabled={disabled}
             />
             <button
                 type="button"
-                className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 focus:outline-none transition-colors"
+                disabled={disabled}
+                className="absolute inset-y-0 right-0 pr-4 flex items-center text-slate-400 hover:text-slate-600 focus:outline-none transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
                 onClick={() => setShowPassword(!showPassword)}
                 aria-label={showPassword ? "Hide password" : "Show password"}
             >
