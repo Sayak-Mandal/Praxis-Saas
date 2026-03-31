@@ -1,0 +1,12 @@
+[build]
+# Tell Railway to build from the backend subdirectory using its Dockerfile
+builder = "DOCKERFILE"
+dockerfilePath = "backend/Dockerfile"
+buildContext = "backend"
+
+[deploy]
+# Health check so Railway knows the app is up
+healthcheckPath = "/api/v1/health"
+healthcheckTimeout = 60
+restartPolicyType = "ON_FAILURE"
+restartPolicyMaxRetries = 3
