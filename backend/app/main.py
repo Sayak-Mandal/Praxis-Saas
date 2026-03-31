@@ -19,16 +19,17 @@ app = FastAPI(
 )
 
 # CORS configuration
-# Explicit origins for localhost dev
 origins = [
     "http://localhost:3000",
+    "https://praxis-saas.vercel.app",        # Vercel production
+    "https://praxis-saas-production.up.railway.app",  # Railway (if testing directly)
 ]
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
-    # Allows ALL Vercel preview deployments and production domains for this project
-    allow_origin_regex=r"https://.*\.vercel\.app",
+    # Catches all Vercel preview URLs and any railway.app subdomains
+    allow_origin_regex=r"https://(.*\.vercel\.app|.*\.railway\.app)",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

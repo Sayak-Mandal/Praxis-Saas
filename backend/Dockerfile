@@ -10,8 +10,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the rest of the application
 COPY . .
 
-# Expose the application port
+# Expose default port (Railway will override via $PORT)
 EXPOSE 8080
 
-# Run Uvicorn bound to 0.0.0.0 and port 8080
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8080"]
+# Use Railway's dynamic $PORT env var (falls back to 8080 on other platforms)
+CMD ["sh", "-c", "uvicorn app.main:app --host 0.0.0.0 --port ${PORT:-8080}"]
