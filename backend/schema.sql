@@ -73,6 +73,11 @@ ALTER TABLE public.interview_attempts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.coding_attempts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.doubts ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.weak_topics ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.question_bank ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.interview_sessions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.interview_responses ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.app_sessions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.live_interview_sessions ENABLE ROW LEVEL SECURITY;
 
 -- RLS Policies
 CREATE POLICY "Users can view their own profile" ON public.users FOR SELECT USING (auth.uid() = id);
