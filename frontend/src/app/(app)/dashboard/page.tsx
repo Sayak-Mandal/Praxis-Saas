@@ -14,6 +14,15 @@ export default function DashboardPage() {
     // Split loading states to render stats immediately
     const [statsLoading, setStatsLoading] = useState(true)
 
+    const DEFAULT_STATS = {
+        avg_interview_score: 0, coding_success_rate: 0,
+        top_strengths: ["Data Structures", "Algorithms", "Problem Solving"],
+        top_weaknesses: ["Dynamic Programming", "System Design", "Graphs"],
+        readiness_index: 0,
+        weekly_activity: { scores: [], interviews: [] },
+        total_interviews: 0, total_coding_attempts: 0, total_doubts_asked: 0, total_app_visits: 0
+    }
+
     // Chart interactivity state
     const [activeMetric, setActiveMetric] = useState<'scores' | 'interviews'>('scores')
     const [timeframe, setTimeframe] = useState<'Week' | 'Month'>('Week')
@@ -55,11 +64,11 @@ export default function DashboardPage() {
             const analyticsRes = await getAnalytics()
             setStats(analyticsRes.stats)
 
-            // Cache the data in sessionStorage so leaving the tab and coming back doesn't cause a reload
+            // Cache the data in localStorage so leaving the tab and coming back doesn't cause a reload
             if (typeof window !== 'undefined') {
-                sessionStorage.setItem('praxis_dashboard_stats', JSON.stringify(analyticsRes.stats))
-                sessionStorage.setItem('praxis_dashboard_userName', newUserName)
-                sessionStorage.setItem('praxis_dashboard_greeting', newGreeting)
+                localStorage.setItem('praxis_dashboard_stats', JSON.stringify(analyticsRes.stats))
+                localStorage.setItem('praxis_dashboard_userName', newUserName)
+                localStorage.setItem('praxis_dashboard_greeting', newGreeting)
             }
 
             // NOTE: trackVisit is intentionally NOT called here.
@@ -76,22 +85,23 @@ export default function DashboardPage() {
         }
     }, [])
 
-    // Load fast stats on initial render if not cached
+    // Load fast stats on initial render
     useEffect(() => {
         if (typeof window !== 'undefined') {
-            const cachedStats = sessionStorage.getItem('praxis_dashboard_stats')
+            const cachedStats = localStorage.getItem('praxis_dashboard_stats')
             if (cachedStats) {
                 try {
                     setStats(JSON.parse(cachedStats))
-                    setUserName(sessionStorage.getItem('praxis_dashboard_userName') || 'Candidate')
-                    setGreeting(sessionStorage.getItem('praxis_dashboard_greeting') || 'Good day')
-                    setStatsLoading(false)
+                    setUserName(localStorage.getItem('praxis_dashboard_userName') || 'Candidate')
+                    setGreeting(localStorage.getItem('praxis_dashboard_greeting') || 'Good day')
                 } catch (e) {
-                    loadStats()
+                    setStats(DEFAULT_STATS)
                 }
             } else {
-                loadStats()
+                setStats(DEFAULT_STATS)
             }
+            // Always refresh data in the background silently
+            loadStats()
         }
     }, [loadStats])
 
@@ -109,13 +119,9 @@ export default function DashboardPage() {
         setTimeframe(prev => prev === 'Week' ? 'Month' : 'Week')
     }
 
-    if (statsLoading) {
-        return (
-            <div className="flex items-center justify-center h-full bg-[#f3f4f6]">
-                <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-[#181b25]"></div>
-            </div>
-        )
-    }
+    // We no longer block rendering with a full-screen spinner.
+    // The dashboard layout will render immediately with cached or default stats.
+    // The "Refresh Metrics" button spinner handles the visual loading state.
 
     const chartData = stats?.weekly_activity?.[activeMetric] || []
 
